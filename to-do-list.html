@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Alina Kurliantseva | To Do List</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HTML, CSS, JavaScript, Adobe Photoshop">
+  <meta name="keywords" content="HTML, CSS, JavaScript, Adobe Photoshop">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+  <link rel="stylesheet" href="css/to-do-list.css">
+</head>
+
+<body>
+  <section id="background-image">
+    <div id="dot-pattern">
+      <div id="container">
+        <h1>To Do List</h1>
+        <ul id="theList" contenteditable>
+          <li>Type your text here...</li>
+          <li>Type your text here...</li>
+          <li>Type your text here...</li>
+        </ul><br />
+        <div><a href=javascript.void(); id="saveAll">Save</a>
+          <a href=javascript.void(); id="clearAll">Clear</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/jquery.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      var theList = document.getElementById('theList');
+      $('#saveAll').click(function (e) {
+        e.preventDefault();
+        localStorage.setItem('toDoList', theList.innerHTML);
+      });
+      $('#clearAll').click(function (e) {
+        e.preventDefault();
+        localStorage.clear();
+        location.reload();
+      });
+      loadToDoList();
+
+      function loadToDoList() {
+        if (localStorage.getItem('toDoList')) {
+          theList.innerHTML = localStorage.getItem('toDoList');
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
